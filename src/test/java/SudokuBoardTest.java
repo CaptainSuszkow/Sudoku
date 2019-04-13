@@ -24,14 +24,10 @@ class SudokuTest {
         SudokuBoard d = new SudokuBoard();
         SudokuBoard c = new SudokuBoard();
         assertFalse(a.equals(b));
-        assertFalse(c.equals(d));
+        assertTrue(c.equals(d));
         assertTrue(a.equals(a));
     }
 
-    /*@Test
-    void getN() {
-        assertEquals(9,9);
-    }*/
 
     @Test
     void get() {

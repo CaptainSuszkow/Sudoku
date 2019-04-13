@@ -7,7 +7,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>Zad3</name>
+    <name>Zad5</name>
     <url>http://maven.apache.org</url>
 
     <reporting>
@@ -153,5 +153,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 </project>

@@ -1,37 +1,45 @@
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+
 
 public class SudokuBoard {
 
-    public SudokuField[][] board;
+
+    public List<List<SudokuField>> board;
+
 
     public SudokuBoard() {
-        board = new SudokuField[9][];
-        for (int i = 0; i < 9; ++i) {
-            board[i] = new SudokuField[9];
-        }
+        List<List<SudokuField>> temp = new ArrayList<List<SudokuField>>();
 
-        for (int i = 0; i < 9; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                board[i][j] = new SudokuField();
+        for (int i = 0; i < 9; i++) {
+            SudokuField[] row = new SudokuField[9];
+            temp.add(Arrays.asList(row));
+        }
+        this.board  = Collections.unmodifiableList(temp);
+
+        for (int j = 0; j < 9; j++) {
+            for (int i = 0; i < 9; i++) {
+                board.get(i).set(j, new SudokuField());
             }
         }
     }
 
-
-
     public int get(int x, int y) {
-        return board[x][y].getFieldValue();
+        return board.get(x).get(y).getFieldValue();
     }
 
     public void set(int x, int y, int n) {
-        board[x][y].setFieldValue(n);
+        board.get(x).get(y).setFieldValue(n);
     }
 
     public boolean checkBoard(int row, int col, int n) {
 
-        for (int i = 0; i < board.length; ++i) {
-            if ((i != col && board[row][i].getFieldValue() == n
-                    || i != row && board[i][col].getFieldValue() == n)) {
+        for (int i = 0; i < 9; ++i) {
+            if ((i != col && this.get(row,i) == n
+                    || i != row && this.get(i,col) == n)) {
                 return false;
             }
         }
@@ -42,7 +50,7 @@ public class SudokuBoard {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 if (subY + i != row && subX + j != col
-                        && board[subY + i][subX + j].getFieldValue() == n) {
+                        && this.get(subY + i, subX + j) == n) {
                     return false;
                 }
             }
@@ -53,9 +61,9 @@ public class SudokuBoard {
     }
 
     public boolean equals(final SudokuBoard  b) {
-        for (int i = 0; i < this.board.length; i++) {
-            for (int j = 0; j < this.board.length; j++) {
-                if (this.board[i][j] != b.board[i][j]) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (this.get(i,j) != b.get(i,j)) {
                     return false;
                 }
             }
@@ -67,7 +75,7 @@ public class SudokuBoard {
         SudokuRow sr = new SudokuRow();
 
         for (int i = 0; i < 9; ++i) {
-            sr.setElementOfArray(board[y][i], i);
+            sr.setElementOfArray(board.get(y).get(i), i);
         }
         return sr;
     }
@@ -76,7 +84,7 @@ public class SudokuBoard {
         SudokuColumn sc = new SudokuColumn();
 
         for (int i = 0; i < 9; ++i) {
-            sc.setElementOfArray(board[i][x], i);
+            sc.setElementOfArray(board.get(i).get(x), i);
         }
         return sc;
     }
@@ -89,7 +97,7 @@ public class SudokuBoard {
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                sb.setElementOfBox(board[subY + i][subX + j], i, j);
+                sb.setElementOfBox(board.get(subY + i).get(subX + j), i, j);
             }
         }
         return sb;

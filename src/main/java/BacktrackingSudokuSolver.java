@@ -7,8 +7,8 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         int y = 0;
         boolean foundPlace = false;
 
-        for (int i = 0; i < 9; ++i) {
-            for (int j = 0; j < 9; ++j) {
+        for (int i = 0; i < a.board.size(); ++i) {
+            for (int j = 0; j < a.board.size(); ++j) {
                 if (a.get(i, j) == 0) {
                     y = i;
                     x = j;

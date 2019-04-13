@@ -1,17 +1,21 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class SudokuElement {
-    private SudokuField[] array;
+    //private SudokuField[] array;
+    private List<SudokuField> array  = Arrays.asList(new SudokuField[9]);
 
     SudokuElement() {
-        array = new SudokuField[9];
+        //array = new SudokuField[9];
         for (int i = 0; i < 9; ++i) {
-            array[i] = new SudokuField();
+            array.set(i,new SudokuField());
         }
     }
 
     public boolean verify() {
         for (int i = 0; i < 8; ++i) {
             for (int j = i + 1; j < 9; ++j) {
-                if (array[i].getFieldValue() == array[j].getFieldValue()) {
+                if (array.get(i).getFieldValue() == array.get(j).getFieldValue()) {
                     return false;
                 }
             }
@@ -20,10 +24,10 @@ public class SudokuElement {
     }
 
     public void setElementOfArray(SudokuField sf, int i) {
-        array[i] = sf;
+        array.set(i,sf);
     }
 
     public SudokuField getElementOfArray(int i) {
-        return array[i];
+        return array.get(i);
     }
 }
