@@ -51,7 +51,7 @@ class SudokuTest {
         SudokuBoard c = new SudokuBoard();
         solver.solve(c);
 
-        SudokuColumn sc = new SudokuColumn();
+        SudokuElement sc = new SudokuElement();
 
         for (int i = 0; i < 9; ++i) {
             sc = c.getColumn(i);
@@ -76,8 +76,8 @@ class SudokuTest {
         SudokuBoard c = new SudokuBoard();
         solver.solve(c);
 
-        SudokuRow sr = new SudokuRow();
-
+        //SudokuRow sr = new SudokuRow();
+        SudokuElement sr = new SudokuElement();
         for (int i = 0; i < 9; ++i) {
             sr = c.getRow(i);
             assertTrue(sr.verify());
@@ -101,7 +101,7 @@ class SudokuTest {
         SudokuBoard c = new SudokuBoard();
         solver.solve(c);
 
-        SudokuBox sb = new SudokuBox();
+        SudokuBox sb = new SudokuBox(c.board, 0, 0);
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {

@@ -72,20 +72,20 @@ public class SudokuBoard {
     }
 
     public SudokuRow getRow(int y) {
-        SudokuRow sr = new SudokuRow();
+        SudokuRow sr = new SudokuRow(board, y);
 
-        for (int i = 0; i < 9; ++i) {
+        /*for (int i = 0; i < 9; ++i) {
             sr.setElementOfArray(board.get(y).get(i), i);
-        }
+        }*/
         return sr;
     }
 
     public SudokuColumn getColumn(int x) {
-        SudokuColumn sc = new SudokuColumn();
+        SudokuColumn sc = new SudokuColumn(board, x);
 
-        for (int i = 0; i < 9; ++i) {
+        /*for (int i = 0; i < 9; ++i) {
             sc.setElementOfArray(board.get(i).get(x), i);
-        }
+        }*/
         return sc;
     }
 
@@ -93,13 +93,13 @@ public class SudokuBoard {
         int subX = x - x % 3;
         int subY = y - y % 3;
 
-        SudokuBox sb = new SudokuBox();
+        SudokuBox sb = new SudokuBox(board, subX, subY);
 
-        for (int i = 0; i < 3; ++i) {
+        /*for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 sb.setElementOfBox(board.get(subY + i).get(subX + j), i, j);
             }
-        }
+        }*/
         return sb;
     }
     /*

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class SudokuElement {
     //private SudokuField[] array;
-    private List<SudokuField> array  = Arrays.asList(new SudokuField[9]);
+    protected List<SudokuField> array  = Arrays.asList(new SudokuField[9]);
 
     SudokuElement() {
         //array = new SudokuField[9];

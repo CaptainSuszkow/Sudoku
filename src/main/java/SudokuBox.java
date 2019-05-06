@@ -9,7 +9,7 @@ public class SudokuBox {
 
     public List<List<SudokuField>> box;
 
-    public SudokuBox() {
+    public SudokuBox(List<List<SudokuField>> board, int subX, int subY) {
         List<List<SudokuField>> temp = new ArrayList<List<SudokuField>>();
 
         for (int i = 0; i < 3; i++) {
@@ -21,6 +21,13 @@ public class SudokuBox {
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 3; i++) {
                 box.get(i).set(j, new SudokuField());
+            }
+        }
+        //wypełnianie boxa
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                box.get(i).set(j, board.get(subY + i).get(subX + j));
+                //sb.setElementOfBox(board.get(subY + i).get(subX + j), i, j);
             }
         }
     }
