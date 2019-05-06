@@ -6,6 +6,7 @@ class SudokuTest {
     SudokuSolver solver = new BacktrackingSudokuSolver();
     SudokuBoard b = new SudokuBoard();
     SudokuBoard a = new SudokuBoard();
+
     @Test
     void solver() {
         solver.solve(a);
@@ -124,4 +125,6 @@ class SudokuTest {
 
         assertFalse(sb.verify());
     }
+
+
 }

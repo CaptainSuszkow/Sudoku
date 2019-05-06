@@ -1,3 +1,7 @@
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,5 +33,32 @@ public class SudokuElement {
 
     public SudokuField getElementOfArray(int i) {
         return array.get(i);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("array", array)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SudokuElement that = (SudokuElement) o;
+
+        return new EqualsBuilder()
+                .append(array, that.array)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(array)
+                .toHashCode();
     }
 }

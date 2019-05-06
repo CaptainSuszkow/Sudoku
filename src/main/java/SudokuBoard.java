@@ -1,3 +1,7 @@
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -101,8 +105,38 @@ public class SudokuBoard {
             }
         }*/
         return sb;
+
+
     }
-    /*
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("board", board)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SudokuBoard that = (SudokuBoard) o;
+
+        return new EqualsBuilder()
+                .append(board, that.board)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(board)
+                .toHashCode();
+    }
+
+
     public static void main(final String[] args) {
         SudokuBoard sb = new SudokuBoard();
 
@@ -115,7 +149,7 @@ public class SudokuBoard {
                     System.out.print('\n');
                 }
                 for (int j = 0; j < 9; ++j) {
-                    System.out.print(sb.board[i][j].getFieldValue() + " ");
+                    System.out.print(sb.board.get(i).get(j).getFieldValue() + " ");
                     if (j % 3 == 2) {
                         System.out.print(" ");
                     }
@@ -123,6 +157,7 @@ public class SudokuBoard {
             }
         }
 
+/*
         SudokuBox box = new SudokuBox();
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -138,8 +173,8 @@ public class SudokuBoard {
                     }
                 }
             }
-        }
+        }*/
     }
-    */
+
 }
 

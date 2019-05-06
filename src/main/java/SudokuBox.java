@@ -1,3 +1,7 @@
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,7 +41,7 @@ public class SudokuBox {
             for (int j = 0; j < 3; ++j) {
                 for (int x = 0; x < 3; ++x) {
                     for (int y = 0; y < 3; ++y) {
-                        if (i != x && j != y && (box.get(i).get(j).getFieldValue() == box.get(x).get(y).getFieldValue())) {
+                        if ((i != x || j != y) && (box.get(i).get(j).getFieldValue() == box.get(x).get(y).getFieldValue())) {
                             return false;
                         }
                     }
@@ -54,5 +58,32 @@ public class SudokuBox {
 
     public SudokuField getElementOfBox(int i, int j) {
         return box.get(i).get(j);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("box", box)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SudokuBox sudokuBox = (SudokuBox) o;
+
+        return new EqualsBuilder()
+                .append(box, sudokuBox.box)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(box)
+                .toHashCode();
     }
 }
