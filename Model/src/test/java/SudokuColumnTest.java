@@ -30,7 +30,15 @@ public class SudokuColumnTest {
         sc2.setElementOfArray(sc2.getElementOfArray(1), 2);
 
         assertFalse(sc1.equals(sc2));
+    }
 
+    @Test
+    void hashCodeTest() {
+        solver.solve(a);
+        SudokuColumn sc1 = new SudokuColumn(a.board, 0);
+        SudokuColumn sc2 = new SudokuColumn(a.board, 1);
+        assertTrue(sc1.hashCode() == sc1.hashCode());
+        assertFalse(sc1.hashCode() == sc2.hashCode());
     }
 
 }

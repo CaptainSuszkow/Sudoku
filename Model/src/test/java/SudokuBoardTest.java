@@ -29,6 +29,13 @@ class SudokuTest {
         assertTrue(a.equals(a));
     }
 
+    @Test
+    void hashCodeTest() {
+        solver.solve(a);
+        solver.solve(b);
+        assertTrue(a.hashCode() == a.hashCode());
+        assertFalse(a.hashCode() == b.hashCode());
+    }
 
     @Test
     void get() {

@@ -29,6 +29,14 @@ class SudokuBoxTest {
         sb2.setElementOfBox(sb2.getElementOfBox(1,1), 1, 2);
 
         assertFalse(sb1.equals(sb2));
+    }
 
+    @Test
+    void hashCodeTest() {
+        solver.solve(a);
+        SudokuBox sb1 = new SudokuBox(a.board, 0, 0);
+        SudokuBox sb2 = new SudokuBox(a.board, 6, 6);
+        assertTrue(sb1.hashCode() == sb1.hashCode());
+        assertFalse(sb1.hashCode() == sb2.hashCode());
     }
 }
