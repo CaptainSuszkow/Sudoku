@@ -1,13 +1,11 @@
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SudokuBoard {
 
@@ -64,17 +62,6 @@ public class SudokuBoard {
         return true;
     }
 
-    public boolean equals(final SudokuBoard  b) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (this.get(i,j) != b.get(i,j)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public SudokuRow getRow(int y) {
         SudokuRow sr = new SudokuRow(board, y);
 
@@ -118,9 +105,13 @@ public class SudokuBoard {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         SudokuBoard that = (SudokuBoard) o;
 
@@ -156,24 +147,6 @@ public class SudokuBoard {
                 }
             }
         }
-
-/*
-        SudokuBox box = new SudokuBox();
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                box = sb.getBox(i * 3, j * 3);
-
-                System.out.println("\nBox: ");
-
-                for (int b = 0; b < 3; ++b) {
-                    System.out.print('\n');
-                    for (int p = 0; p < 3; ++p) {
-                        System.out.print(box.getElementOfBox(b, p).getFieldValue() + " ");
-                        System.out.print(sb.get(j * 3 + b, i * 3 + p) + " ");
-                    }
-                }
-            }
-        }*/
     }
 
 }

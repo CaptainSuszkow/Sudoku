@@ -1,9 +1,9 @@
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class SudokuElement {
     //private SudokuField[] array;
@@ -44,9 +44,13 @@ public class SudokuElement {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         SudokuElement that = (SudokuElement) o;
 
