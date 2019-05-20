@@ -18,7 +18,7 @@ class FileSudokuBoardDaoTest {
         SudokuBoard board1 = steam.read();
 
         assertEquals(board.hashCode(),board1.hashCode());
-        
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                System.out.print(board.get(i,j)+" ");

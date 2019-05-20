@@ -1,8 +1,8 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard> {
@@ -15,59 +15,26 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
 
     @Override
     public SudokuBoard read() {
-        SudokuBoard board = new SudokuBoard();
-        String input = null;
-        String[] numbers = null;
+        SudokuBoard board = null;
 
-        BufferedReader fileReader = null;
-        try {
-            fileReader = new BufferedReader(new FileReader(filename));
-            input = fileReader.readLine();
-            numbers = input.split(" ");
+        try (FileInputStream inputStream = new FileInputStream(filename);
+             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+             board = (SudokuBoard) objectInputStream.readObject();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fileReader != null) {
-                try {
-                    fileReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                board.set(i,j,Integer.parseInt(numbers[i * 9 + j]));
-            }
+            throw new RuntimeException(e);
         }
         return board;
     }
 
     @Override
     public void write(SudokuBoard a) {
-        BufferedWriter fileWriter = null;
-        String output  = new String();
-
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                output += Integer.toString(a.get(i,j));
-                output += " ";
-            }
-        }
-
-        try {
-            fileWriter = new BufferedWriter(new FileWriter(filename));
-            fileWriter.write(output);
+        try (FileOutputStream outputStream = new FileOutputStream(filename);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
+            objectOutputStream.writeObject(a);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fileWriter != null) {
-                try {
-                    fileWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            throw new RuntimeException(e);
         }
     }
 }
