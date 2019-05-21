@@ -7,10 +7,11 @@ public class SudokuColumnTest {
     SudokuSolver solver = new BacktrackingSudokuSolver();
     SudokuBoard a = new SudokuBoard();
 
+
     @Test
     void verify() {
         solver.solve(a);
-        SudokuColumn sc1 = new SudokuColumn(a.board, 0);
+        SudokuColumn sc1 = new SudokuColumn(a.getBoard(), 0);
 
         assertTrue(sc1.verify());
 
@@ -22,23 +23,14 @@ public class SudokuColumnTest {
     @Test
     void equals() {
         solver.solve(a);
-        SudokuColumn sc1 = new SudokuColumn(a.board, 0);
-        SudokuColumn sc2 = new SudokuColumn(a.board, 0);
+        SudokuColumn sc1 = new SudokuColumn(a.getBoard(), 0);
+        SudokuColumn sc2 = new SudokuColumn(a.getBoard(), 0);
 
         assertTrue(sc1.equals(sc2));
 
         sc2.setElementOfArray(sc2.getElementOfArray(1), 2);
 
         assertFalse(sc1.equals(sc2));
-    }
-
-    @Test
-    void hashCodeTest() {
-        solver.solve(a);
-        SudokuColumn sc1 = new SudokuColumn(a.board, 0);
-        SudokuColumn sc2 = new SudokuColumn(a.board, 1);
-        assertTrue(sc1.hashCode() == sc1.hashCode());
-        assertFalse(sc1.hashCode() == sc2.hashCode());
     }
 
 }

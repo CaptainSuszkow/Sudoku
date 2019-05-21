@@ -9,8 +9,8 @@ class SudokuBoxTest {
     @Test
     void verify() {
         solver.solve(a);
-        SudokuBox sb1 = new SudokuBox(a.board, 0,0);
-        SudokuBox sb2 = new SudokuBox(a.board, 0,0);
+        SudokuBox sb1 = new SudokuBox(a.getBoard(), 0,0);
+        SudokuBox sb2 = new SudokuBox(a.getBoard(), 0,0);
 
         sb2.setElementOfBox(sb2.getElementOfBox(1,1), 1, 2);
 
@@ -21,8 +21,8 @@ class SudokuBoxTest {
     @Test
     void equals() {
         solver.solve(a);
-        SudokuBox sb1 = new SudokuBox(a.board, 0,0);
-        SudokuBox sb2 = new SudokuBox(a.board, 0,0);
+        SudokuBox sb1 = new SudokuBox(a.getBoard(), 0,0);
+        SudokuBox sb2 = new SudokuBox(a.getBoard(), 0,0);
 
         assertTrue(sb1.equals(sb2));
 
@@ -34,8 +34,8 @@ class SudokuBoxTest {
     @Test
     void hashCodeTest() {
         solver.solve(a);
-        SudokuBox sb1 = new SudokuBox(a.board, 0, 0);
-        SudokuBox sb2 = new SudokuBox(a.board, 6, 6);
+        SudokuBox sb1 = new SudokuBox(a.getBoard(), 0, 0);
+        SudokuBox sb2 = new SudokuBox(a.getBoard(), 6, 6);
         assertTrue(sb1.hashCode() == sb1.hashCode());
         assertFalse(sb1.hashCode() == sb2.hashCode());
     }

@@ -3,15 +3,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class SudokuBoard implements Serializable {
+public class SudokuBoard implements Serializable, Cloneable {
 
 
-    public List<List<SudokuField>> board;
+    private List<List<SudokuField>> board;
 
 
     public SudokuBoard() {
@@ -38,6 +40,10 @@ public class SudokuBoard implements Serializable {
         board.get(x).get(y).setFieldValue(n);
     }
 
+    public List<List<SudokuField>> getBoard() {
+        return board;
+    }
+
     public boolean checkBoard(int row, int col, int n) {
 
         for (int i = 0; i < 9; ++i) {
@@ -59,25 +65,18 @@ public class SudokuBoard implements Serializable {
             }
         }
 
-
         return true;
     }
 
     public SudokuRow getRow(int y) {
         SudokuRow sr = new SudokuRow(board, y);
 
-        /*for (int i = 0; i < 9; ++i) {
-            sr.setElementOfArray(board.get(y).get(i), i);
-        }*/
         return sr;
     }
 
     public SudokuColumn getColumn(int x) {
         SudokuColumn sc = new SudokuColumn(board, x);
 
-        /*for (int i = 0; i < 9; ++i) {
-            sc.setElementOfArray(board.get(i).get(x), i);
-        }*/
         return sc;
     }
 
@@ -87,11 +86,6 @@ public class SudokuBoard implements Serializable {
 
         SudokuBox sb = new SudokuBox(board, subX, subY);
 
-        /*for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                sb.setElementOfBox(board.get(subY + i).get(subX + j), i, j);
-            }
-        }*/
         return sb;
 
 
@@ -128,27 +122,45 @@ public class SudokuBoard implements Serializable {
                 .toHashCode();
     }
 
+    public enum difficultyLevel {
+        EASY, MEDIUM, HARD
+    }
 
-    public static void main(final String[] args) {
-        SudokuBoard sb = new SudokuBoard();
+    public List<List<SudokuField>> getBoardLevel(difficultyLevel dLevel) {
+        int numberOfEmptyFields;
+        Random rnd = new Random();
 
-        SudokuSolver solver = new BacktrackingSudokuSolver();
+        switch (dLevel) {
+            case EASY:
+                numberOfEmptyFields = 2;
+                break;
+            case MEDIUM:
+                numberOfEmptyFields = 3;
+                break;
+            case HARD:
+                numberOfEmptyFields = 4;
+                break;
+            default:
+                numberOfEmptyFields = 2;
+                break;
+        }
 
-        if (solver.solve(sb)) {
-            for (int i = 0; i < 9; ++i) {
-                System.out.print('\n');
-                if (i % 3 == 0 && i > 0) {
-                    System.out.print('\n');
-                }
-                for (int j = 0; j < 9; ++j) {
-                    System.out.print(sb.board.get(i).get(j).getFieldValue() + " ");
-                    if (j % 3 == 2) {
-                        System.out.print(" ");
-                    }
-                }
+        int r;
+
+        for (int i = 0; i < 9; ++i) {
+            for (int j = 0; j < numberOfEmptyFields; ++j) {
+                do {
+                    r = rnd.nextInt(9);
+                } while(board.get(i).get(r).getFieldValue() == 0);
+                board.get(i).get(r).setFieldValue(0);
             }
         }
+
+
+
+        return board;
     }
+
 
 }
 

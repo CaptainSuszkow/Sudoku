@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="318.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller">
+  <children>
+    <Button fx:id="buttonEasy" layoutX="127.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleButtonClick" prefWidth="65.0" text="Easy" />
+    <Button fx:id="buttonMedium" layoutX="127.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleButtonClick" prefWidth="65.0" text="Medium" />
+    <Button fx:id="buttonHard" layoutX="127.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleButtonClick" prefWidth="65.0" text="Hard" />
+    <Text fontSmoothingType="GRAY" layoutX="139.0" layoutY="48.0" scaleX="2.7839224883968963" scaleY="2.5036710719530104" strokeType="OUTSIDE" strokeWidth="0.0" text="Sudoku" />
+  </children>
+</AnchorPane>

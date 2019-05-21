@@ -109,7 +109,7 @@ class SudokuTest {
         SudokuBoard c = new SudokuBoard();
         solver.solve(c);
 
-        SudokuBox sb = new SudokuBox(c.board, 0, 0);
+        SudokuBox sb = new SudokuBox(c.getBoard(), 0, 0);
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -132,6 +132,5 @@ class SudokuTest {
 
         assertFalse(sb.verify());
     }
-
 
 }

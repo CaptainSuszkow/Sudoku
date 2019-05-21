@@ -10,7 +10,7 @@ public class SudokuRowTest {
     @Test
     void verify() {
         solver.solve(a);
-        SudokuRow sr1 = new SudokuRow(a.board, 0);
+        SudokuRow sr1 = new SudokuRow(a.getBoard(), 0);
 
         assertTrue(sr1.verify());
 
@@ -22,8 +22,8 @@ public class SudokuRowTest {
     @Test
     void equals() {
         solver.solve(a);
-        SudokuRow sr1 = new SudokuRow(a.board, 0);
-        SudokuRow sr2 = new SudokuRow(a.board, 0);
+        SudokuRow sr1 = new SudokuRow(a.getBoard(), 0);
+        SudokuRow sr2 = new SudokuRow(a.getBoard(), 0);
 
         assertTrue(sr1.equals(sr2));
 
@@ -34,8 +34,8 @@ public class SudokuRowTest {
     @Test
     void hashCodeTest() {
         solver.solve(a);
-        SudokuRow sr1 = new SudokuRow(a.board, 0);
-        SudokuRow sr2 = new SudokuRow(a.board, 1);
+        SudokuRow sr1 = new SudokuRow(a.getBoard(), 0);
+        SudokuRow sr2 = new SudokuRow(a.getBoard(), 1);
         assertTrue(sr1.hashCode() == sr1.hashCode());
         assertFalse(sr1.hashCode() == sr2.hashCode());
     }
