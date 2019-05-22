@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -122,15 +121,15 @@ public class SudokuBoard implements Serializable, Cloneable {
                 .toHashCode();
     }
 
-    public enum difficultyLevel {
+    public enum DifficultyLevel {
         EASY, MEDIUM, HARD
     }
 
-    public List<List<SudokuField>> getBoardLevel(difficultyLevel dLevel) {
+    public List<List<SudokuField>> getBoardLevel(DifficultyLevel level) {
         int numberOfEmptyFields;
         Random rnd = new Random();
 
-        switch (dLevel) {
+        switch (level) {
             case EASY:
                 numberOfEmptyFields = 2;
                 break;
@@ -151,13 +150,10 @@ public class SudokuBoard implements Serializable, Cloneable {
             for (int j = 0; j < numberOfEmptyFields; ++j) {
                 do {
                     r = rnd.nextInt(9);
-                } while(board.get(i).get(r).getFieldValue() == 0);
+                } while (board.get(i).get(r).getFieldValue() == 0);
                 board.get(i).get(r).setFieldValue(0);
             }
         }
-
-
-
         return board;
     }
 

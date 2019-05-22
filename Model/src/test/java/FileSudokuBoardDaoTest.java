@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileSudokuBoardDaoTest {
@@ -8,15 +10,19 @@ class FileSudokuBoardDaoTest {
     @Test
     void readAndWrtie() {
         SudokuBoard board = new SudokuBoard();
+        SudokuBoard board1 = null;
         SudokuSolver solver = new BacktrackingSudokuSolver();
-        FileSudokuBoardDao steam = new FileSudokuBoardDao("file.txt");
 
         solver.solve(board);
 
-        steam.write(board);
+        try(FileSudokuBoardDao steam = new FileSudokuBoardDao("file.txt") ){
+            steam.write(board);
+            board1 = steam.read();
+        } catch (IOException e){
 
-        SudokuBoard board1 = steam.read();
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         assertEquals(board.hashCode(),board1.hashCode());
 
         for (int i = 0; i < 9; i++) {
@@ -25,8 +31,5 @@ class FileSudokuBoardDaoTest {
             }
             System.out.println();
         }
-
     }
-
-
 }

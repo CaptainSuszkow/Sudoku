@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class SudokuColumn extends SudokuElement implements Cloneable{
+public class SudokuColumn extends SudokuElement implements Cloneable {
 
     SudokuColumn(List<List<SudokuField>> board, int line) {
         for (int i = 0; i < 9; ++i) {

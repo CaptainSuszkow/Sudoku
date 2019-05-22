@@ -14,22 +14,26 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>SuszekOmiecinski</groupId>
-            <artifactId>ModelPom</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-        </dependency>
-    </dependencies>
-    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>SuszekOmiecinski</groupId>
+                <artifactId>ModelPom</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-controls</artifactId>
+                <version>11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-fxml</artifactId>
+                <version>11</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <reporting>
         <plugins>
             <plugin>
