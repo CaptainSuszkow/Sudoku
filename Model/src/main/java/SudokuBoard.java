@@ -122,7 +122,13 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
     public enum DifficultyLevel {
-        EASY, MEDIUM, HARD
+        EASY(20), MEDIUM(30), HARD(43);
+
+        private int value;
+
+        DifficultyLevel(int val) {
+            this.value = val;
+        }
     }
 
     public List<List<SudokuField>> getBoardLevel(DifficultyLevel level) {
